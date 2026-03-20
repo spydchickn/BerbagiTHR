@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berbagi THR 💝</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #fff8ee;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bg {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #fff8ee 0%, #fff0d0 50%, #ffe4b5 100%);
+    z-index: 0;
+  }
+
+  .lantern {
+    position: fixed;
+    animation: floatLantern linear infinite;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.2;
+  }
+
+  @keyframes floatLantern {
+    0% { transform: translateY(110vh) rotate(-10deg); opacity: 0; }
+    10% { opacity: 0.2; }
+    90% { opacity: 0.2; }
+    100% { transform: translateY(-10vh) rotate(10deg); opacity: 0; }
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 5, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.5s ease;
+  }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .popup {
+    background: #fff;
+    border-radius: 32px;
+    max-width: 400px;
+    width: 92%;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4), 0 0 0 3px #F5A623;
+    animation: popIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden;
+  }
+
+  @keyframes popIn {
+    from { transform: scale(0.5) translateY(60px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  .popup-header {
+    background: linear-gradient(160deg, #1B8A4C 0%, #0a4a28 100%);
+    padding: 30px 24px 22px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .popup-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 20px;
+    background: #fff;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  }
+
+  .emoji-big {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 8px;
+    animation: swing 2s ease-in-out infinite;
+  }
+
+  @keyframes swing {
+    0%, 100% { transform: rotate(-8deg); }
+    50% { transform: rotate(8deg); }
+  }
+
+  .popup-header h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.9rem;
+    color: #FFD580;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  }
+
+  .popup-header .sub {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .popup-body {
+    padding: 28px 26px 16px;
+    text-align: center;
+  }
+
+  .tag-sorry {
+    display: inline-block;
+    background: #fff0d0;
+    border: 2px dashed #F5A623;
+    border-radius: 100px;
+    padding: 5px 18px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #a06800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .msg-main {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #1a1a2e;
+    line-height: 1.45;
+    margin-bottom: 18px;
+  }
+
+  .msg-main .noTHR {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.7rem;
+    color: #E63946;
+  }
+
+  .doa-box {
+    background: linear-gradient(135deg, #f0fff5, #e8f8ef);
+    border: 1.5px solid #a8e6c2;
+    border-radius: 16px;
+    padding: 16px 18px;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+
+  .doa-box .doa-title {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #0d6b38;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+
+  .doa-box .doa-text {
+    font-size: 0.95rem;
+    color: #1a4a2e;
+    font-weight: 700;
+    line-height: 1.6;
+  }
+
+  .target-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #1B8A4C, #27AE60);
+    color: #fff;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.55rem;
+    padding: 10px 24px;
+    border-radius: 100px;
+    box-shadow: 0 6px 20px rgba(27,138,76,0.45);
+    margin: 6px 0 14px;
+    animation: glowPulse 2s ease infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { box-shadow: 0 6px 20px rgba(27,138,76,0.45); }
+    50% { box-shadow: 0 6px 35px rgba(27,138,76,0.75); }
+  }
+
+  .per-hari {
+    font-size: 0.8rem;
+    color: #888;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .popup-footer {
+    padding: 8px 26px 28px;
+    text-align: center;
+  }
+
+  .divider {
+    height: 1px;
+    background: #f0f0f0;
+    margin-bottom: 20px;
+  }
+
+  .btn-aamiin {
+    display: block;
+    width: 100%;
+    padding: 17px;
+    background: linear-gradient(135deg, #F5A623 0%, #d4830a 100%);
+    color: #fff;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(245,166,35,0.5);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-aamiin::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -80%;
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shine 2.5s ease infinite;
+    transform: skewX(-20deg);
+  }
+
+  @keyframes shine {
+    0% { left: -80%; }
+    100% { left: 130%; }
+  }
+
+  .btn-aamiin:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(245,166,35,0.6);
+  }
+
+  .btn-aamiin:active { transform: scale(0.97); }
+
+  .note {
+    font-size: 0.72rem;
+    color: #bbb;
+    margin-top: 10px;
+  }
+
+  /* THANK YOU */
+  .thankyou {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease 0.3s;
+  }
+
+  .thankyou.show { opacity: 1; }
+
+  .ty-emoji {
+    font-size: 5rem;
+    margin-bottom: 16px;
+    display: block;
+    animation: floatBig 2s ease infinite alternate;
+  }
+
+  @keyframes floatBig {
+    from { transform: translateY(0) rotate(-5deg); }
+    to { transform: translateY(-18px) rotate(5deg); }
+  }
+
+  .ty-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.4rem;
+    color: #1B8A4C;
+    text-align: center;
+    text-shadow: 0 2px 10px rgba(27,138,76,0.15);
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+
+  .ty-sub {
+    font-size: 1rem;
+    color: #888;
+    font-weight: 700;
+    margin-top: 10px;
+    text-align: center;
+    animation: fadeUp 0.8s ease 0.5s both;
+  }
+
+  @keyframes fadeUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .page-bg {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  /* Confetti */
+  .conf {
+    position: fixed;
+    pointer-events: none;
+    z-index: 200;
+    border-radius: 2px;
+    animation: confDrop linear forwards;
+  }
+
+  @keyframes confDrop {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  .overlay.bye { animation: fadeOut 0.55s ease forwards; }
+  .popup.bye { animation: popOut 0.45s cubic-bezier(0.36,0,0.66,-0.56) forwards; }
+
+  @keyframes fadeOut { to { opacity: 0; } }
+  @keyframes popOut { to { transform: scale(0.4) translateY(80px); opacity: 0; } }
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="page-bg"></div>
+
+<div class="thankyou" id="thankyou">
+  <span class="ty-emoji">🤲</span>
+  <div class="ty-title">Aamiin Ya Rabbal Alamiin!</div>
+  <div class="ty-sub">Makasih doanya... semoga tahun depan bisa bagi THR beneran! 🥰</div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="popup" id="popup">
+
+    <div class="popup-header">
+      <span class="emoji-big">🎁</span>
+      <h1>Selamat Lebaran!</h1>
+      <div class="sub">Idul Fitri 1446 H</div>
+    </div>
+
+    <div class="popup-body">
+      <div class="tag-sorry">⚠️ Info THR</div>
+
+      <div class="msg-main">
+        Sorry yee... <span class="noTHR">kaga THR</span><br>THR ann... 🙏😅
+      </div>
+
+      <div class="doa-box">
+        <div class="doa-title">🌙 Titip Doa Ya</div>
+        <div class="doa-text">
+          Doain semoga bisa <strong>1M per hari</strong> supaya bisa bagi bagi THR tahun depan buat kalian semua! 🙏
+        </div>
+      </div>
+
+    
+    </div>
+
+    <div class="popup-footer">
+      <div class="divider"></div>
+      <button class="btn-aamiin" onclick="closePopup()">🤲 Aamiin..</button>
+      <div class="note">Klik untuk mengamini doa di atas ☝️</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const emojis = ['🏮','✨','⭐','🌙','🌟','💫','🎊'];
+  for (let i = 0; i < 14; i++) {
+    const el = document.createElement('div');
+    el.className = 'lantern';
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.cssText = `left:${Math.random()*100}vw;font-size:${1+Math.random()*2}rem;animation-duration:${8+Math.random()*12}s;animation-delay:${Math.random()*8}s`;
+    document.body.appendChild(el);
+  }
+
+  function spawnConfetti() {
+    const colors = ['#F5A623','#1B8A4C','#E63946','#FFD580','#27AE60','#ffffff','#ff9f43'];
+    for (let i = 0; i < 90; i++) {
+      const el = document.createElement('div');
+      el.className = 'conf';
+      const size = 6 + Math.random() * 10;
+      el.style.cssText = `
+        left:${Math.random()*100}vw;top:-20px;
+        width:${size}px;height:${size}px;
+        background:${colors[Math.floor(Math.random()*colors.length)]};
+        border-radius:${Math.random()>.5?'50%':'2px'};
+        animation-duration:${1.5+Math.random()*2.5}s;
+        animation-delay:${Math.random()*0.8}s;
+      `;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 4000);
+    }
+  }
+
+  function closePopup() {
+    const overlay = document.getElementById('overlay');
+    const popup = document.getElementById('popup');
+    popup.classList.add('bye');
+    setTimeout(() => overlay.classList.add('bye'), 150);
+    spawnConfetti();
+    setTimeout(() => {
+      overlay.style.display = 'none';
+      document.getElementById('thankyou').classList.add('show');
+    }, 650);
+  }
+</script>
+</body>
+</html>
